@@ -1,0 +1,31 @@
+<idea-plugin>
+    <name>keymap switcher</name>
+    <version>1.0</version>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description><![CDATA[
+      Enter short description for your plugin here.<br>
+      <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="145.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <depends>com.intellij.modules.xml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="org.intellij.plugins.keymapswitcher.Settings"/>
+        <applicationService serviceImplementation="org.intellij.plugins.keymapswitcher.SwitcherService"/>
+        <httpRequestHandler implementation="org.intellij.plugins.keymapswitcher.KeyboardTypeListener"/>
+    </extensions>
+
+    <actions>
+    </actions>
+
+</idea-plugin>
