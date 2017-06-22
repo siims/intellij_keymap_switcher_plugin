@@ -17,6 +17,8 @@ import java.util.Map;
 )
 public class Settings implements PersistentStateComponent<Settings> {
 
+    public static final String PROXY_URL = "http://localhost:8080";
+
     @Nullable
     private Map<String, String> keyboardToKeymapMapping;
 
@@ -26,8 +28,8 @@ public class Settings implements PersistentStateComponent<Settings> {
             private static final long serialVersionUID = 3682465850618332320L;
 
             {
-                put("3", "Default for GNOME");
-                put("19", "Mac OS X");
+                put("6", "Default for GNOME");
+                put("3", "Mac OS X");
             }
         };
     }

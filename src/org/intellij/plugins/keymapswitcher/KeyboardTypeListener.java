@@ -17,8 +17,7 @@ public class KeyboardTypeListener extends RestService {
 
     private static final Logger LOG = Logger.getInstance(KeyboardTypeListener.class);
 
-    private String SERVICE_NAME = "keymapSwitcher";
-    private String DEVICE_EXTRACTION_PATTERN = ".*" + SERVICE_NAME + "/";
+    static final String SERVICE_NAME = "keymapSwitcher";
 
     @NotNull
     @Override
@@ -37,11 +36,10 @@ public class KeyboardTypeListener extends RestService {
                           @NotNull FullHttpRequest fullHttpRequest,
                           @NotNull ChannelHandlerContext channelHandlerContext) throws IOException {
 
-
         Optional<String> device = parseDeviceNumber(fullHttpRequest);
         if (!device.isPresent()) {
-            return "Device number not found. Try adding '/{inputEventNumber}' to request (ex: 127.0.0.1:63343/api" +
-                    ".keymapSwitcher/5)";
+            return "Device number not found. Try adding '/{inputEventNumber}' to request (ex: 127.0.0.1:63330/api" +
+                    "." + SERVICE_NAME + "/3)";
         }
 
         SwitcherService.getInstance().switchTo(device.get());
@@ -58,15 +56,16 @@ public class KeyboardTypeListener extends RestService {
 
     private Optional<String> parseDeviceNumber(@NotNull FullHttpRequest fullHttpRequest) {
         String uri = fullHttpRequest.uri();
+        String DEVICE_EXTRACTION_PATTERN = ".*" + SERVICE_NAME + "/";
         String possibleDevice = uri.replaceAll(DEVICE_EXTRACTION_PATTERN, "");
-        Integer device = null;
+        String device = null;
 
         try {
-            device = new Integer(possibleDevice);
+            device = String.valueOf(new Integer(possibleDevice));
         } catch (NumberFormatException e) {
             LOG.warn("Input device not valid integer '" + possibleDevice + "'");
         }
 
-        return Optional.ofNullable(possibleDevice);
+        return Optional.ofNullable(device);
     }
 }
