@@ -28,7 +28,8 @@ public class Settings implements PersistentStateComponent<Settings> {
             private static final long serialVersionUID = 3682465850618332320L;
 
             {
-                put("6", "Default for GNOME");
+                put("20", "Default for GNOME");
+                put("17", "Eclipse");
                 put("3", "Mac OS X");
             }
         };

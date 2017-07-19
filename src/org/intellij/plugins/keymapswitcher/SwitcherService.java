@@ -16,17 +16,15 @@ public class SwitcherService {
         return ServiceManager.getService(SwitcherService.class);
     }
 
-    public void switchTo(String deviceNumber) {
+    public void switchTo(String selectedKeymap) {
 
-        Settings settings = Settings.getInstance();
-
-        String selectedKeymap = settings.getKeyboardToKeymapMapping().get(deviceNumber);
 
         Keymap[] allKeymaps = KeymapManagerEx.getInstanceEx().getAllKeymaps();
         Keymap newKeymap = null;
         for (Keymap keymap : allKeymaps) {
             if (keymap.getName().equals(selectedKeymap) && !keymap.equals(KeymapManagerEx.getInstanceEx().getActiveKeymap())) {
                 newKeymap = keymap;
+                break;
             }
         }
 

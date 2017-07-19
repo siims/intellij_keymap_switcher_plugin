@@ -42,7 +42,9 @@ public class KeyboardTypeListener extends RestService {
                     "." + SERVICE_NAME + "/3)";
         }
 
-        SwitcherService.getInstance().switchTo(device.get());
+        String selectedKeymap = Settings.getInstance().getKeyboardToKeymapMapping().get(device.get());
+
+        SwitcherService.getInstance().switchTo(selectedKeymap);
 
         sendOk(fullHttpRequest, channelHandlerContext);
         return null;
